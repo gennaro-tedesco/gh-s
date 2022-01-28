@@ -3,9 +3,7 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"strings"
 
-	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
 
@@ -19,21 +17,9 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		lang, _ := cmd.Flags().GetString("lang")
 		desc, _ := cmd.Flags().GetString("desc")
-		var parsedQuery = parseInput(args[0], lang, desc)
+		parsedQuery := parseInput(args[0], lang, desc)
 		repos := getRepos(parsedQuery)
-
-		var PromptList = promptui.Select{
-			Label:     "repository list",
-			Items:     repos,
-			Templates: getTemplate(),
-			Size:      20,
-			Searcher: func(input string, idx int) bool {
-				repo := repos[idx]
-				title := strings.ToLower(repo.Name)
-
-				return strings.Contains(title, input)
-			},
-		}
+		PromptList := getSelectionPrompt(repos)
 
 		idx, _, err := PromptList.Run()
 		if err != nil {
