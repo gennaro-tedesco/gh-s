@@ -13,12 +13,12 @@ var rootCmd = &cobra.Command{
 	Use:   "gh-s",
 	Short: "short description",
 	Long:  "Long description",
-	Args:  cobra.ExactArgs(1),
+	Args:  cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		lang, _ := cmd.Flags().GetString("lang")
 		desc, _ := cmd.Flags().GetString("desc")
 		colour, _ := cmd.Flags().GetString("colour")
-		parsedQuery := parseInput(args[0], lang, desc)
+		parsedQuery := getInputPrompt(args, lang, desc)
 		repos := getRepos(parsedQuery)
 		PromptList := getSelectionPrompt(repos, colour)
 

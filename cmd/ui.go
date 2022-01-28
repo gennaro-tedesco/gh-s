@@ -1,12 +1,35 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
+	"log"
 	"net/url"
 	"strings"
 
 	"github.com/manifoldco/promptui"
 )
+
+func getInputPrompt(args []string, lang string, desc string) url.Values {
+	if len(args) == 0 {
+		prompt := promptui.Prompt{
+			Label: "Repository name",
+			Validate: func(input string) error {
+				if len(input) == 0 {
+					return errors.New("no input provided")
+				}
+				return nil
+			},
+		}
+
+		result, err := prompt.Run()
+		if err != nil {
+			log.Fatal(err)
+		}
+		return parseInput(result, lang, desc)
+	}
+	return parseInput(args[0], lang, desc)
+}
 
 func parseInput(search string, lang string, desc string) url.Values {
 	queryString := fmt.Sprintf("%s in:name", search)
@@ -19,7 +42,7 @@ func parseInput(search string, lang string, desc string) url.Values {
 	query := url.Values{}
 	query.Add("q", queryString)
 	query.Add("sort", "stars")
-	query.Add("per_page", "30")
+	query.Add("per_page", "100")
 	return query
 }
 
