@@ -23,12 +23,14 @@
   <a href="#Feedback">Feedback</a>
 </h3>
 
-Search GitHub repositories interactively from the command line. Start the prompt, browse the results and open in the browser! What was the name of that repository? But I remember it is written in Go and contains "awesome" in the description...
+Search GitHub repositories interactively from the command line. Start the prompt, browse the results and open in the browser! The name of that repository 🤔? Written in rust, a list of awesome projects...
 
 ...well say no more:
 ```
-gh s -l go -d awesome
+gh s -l rust -d awesome
 ```
+
+<img alt="example_image" src="https://user-images.githubusercontent.com/15387611/151635859-4a8a2200-b000-4e03-888a-2dc8ddcef009.png">
 
 ## Installation
 ```
