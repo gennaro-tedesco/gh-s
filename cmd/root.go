@@ -25,7 +25,7 @@ var rootCmd = &cobra.Command{
 		var PromptList = promptui.Select{
 			Label:     "repository list",
 			Items:     repos,
-			Templates: Template,
+			Templates: getTemplate(),
 			Size:      20,
 			Searcher: func(input string, idx int) bool {
 				repo := repos[idx]
