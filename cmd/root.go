@@ -11,12 +11,20 @@ import (
 
 var cfgFile string
 
+// VERSION number: change manually
+const VERSION = "0.0.0"
+
 var rootCmd = &cobra.Command{
 	Use:   "gh-s",
 	Short: "gh-s: search repositories interactively",
 	Long:  "gh-s: interactive prompt to search and browse github repositories",
 	Args:  cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
+		version, _ := cmd.Flags().GetBool("version")
+		if version {
+			fmt.Println(VERSION)
+			os.Exit(1)
+		}
 		lang, _ := cmd.Flags().GetString("lang")
 		desc, _ := cmd.Flags().GetString("desc")
 		user, _ := cmd.Flags().GetString("user")
@@ -47,6 +55,7 @@ func init() {
 	rootCmd.Flags().StringP("desc", "d", "", "search in repository description")
 	rootCmd.Flags().StringP("user", "u", "", "search repository by user")
 	rootCmd.Flags().StringP("colour", "c", "cyan", "colour of selection prompt")
+	rootCmd.Flags().BoolP("version", "V", false, "print current version")
 	rootCmd.SetHelpTemplate(getRootHelp())
 }
 
