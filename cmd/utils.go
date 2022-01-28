@@ -5,6 +5,14 @@ import (
 	"net/url"
 )
 
+func checkNil(decoded interface{}, key string) string {
+	val, ok := decoded.(map[string]interface{})[key]
+	if ok && val != nil {
+		return val.(string)
+	}
+	return ""
+}
+
 func parseInput(search string, lang string, desc string) url.Values {
 	queryString := fmt.Sprintf("%s in:name", search)
 	if lang != "" {

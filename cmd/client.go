@@ -8,9 +8,10 @@ import (
 )
 
 type repoInfo struct {
-	Name  string
-	URL   string
-	Stars float64
+	Name        string
+	Description string
+	URL         string
+	Stars       float64
 }
 
 func getRepos(query url.Values) []repoInfo {
@@ -30,11 +31,11 @@ func getRepos(query url.Values) []repoInfo {
 	var repos []repoInfo
 	for _, item := range itemsResults {
 		repos = append(repos, repoInfo{
-			Name:  item.(map[string]interface{})["full_name"].(string),
-			URL:   item.(map[string]interface{})["html_url"].(string),
-			Stars: item.(map[string]interface{})["stargazers_count"].(float64),
+			Name:        item.(map[string]interface{})["full_name"].(string),
+			Description: checkNil(item, "description"),
+			URL:         item.(map[string]interface{})["html_url"].(string),
+			Stars:       item.(map[string]interface{})["stargazers_count"].(float64),
 		})
-		// also return description??
 	}
 	return repos
 }
