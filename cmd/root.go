@@ -91,11 +91,12 @@ Prompt commands:
 	enter (<CR>): open selected repository in the web browser
 
 Flags:
-  -l, --lang   search repositories with specific language
-  -d, --desc   match repository description
-  -u, --user   narrow the search down to a specific user's repositories
-  -c, --colour change prompt colour
-  -h, --help   show this help page
+  -l, --lang    search repositories with specific language
+  -d, --desc    match repository description
+  -u, --user    narrow the search down to a specific user's repositories
+  -c, --colour  change prompt colour
+  -V, --version print current version
+  -h, --help    show this help page
 
 Examples:
 
