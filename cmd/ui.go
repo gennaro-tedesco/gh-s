@@ -23,7 +23,7 @@ func parseInput(search string, lang string, desc string) url.Values {
 	return query
 }
 
-func getTemplate() *promptui.SelectTemplates {
+func getTemplate(colour string) *promptui.SelectTemplates {
 	funcMap := promptui.FuncMap
 	funcMap["parseStars"] = func(starCount float64) string {
 		if starCount >= 1000 {
@@ -41,9 +41,9 @@ func getTemplate() *promptui.SelectTemplates {
 	}
 
 	return &promptui.SelectTemplates{
-		Active:   "\U0001F449 {{ .Name | cyan | bold }}",
-		Inactive: "   {{ .Name | cyan }}",
-		Selected: `{{ "✔" | green | bold }} {{ .Name | cyan | bold }}`,
+		Active:   fmt.Sprintf("\U0001F449 {{ .Name | %s | bold }}", colour),
+		Inactive: fmt.Sprintf("   {{ .Name | %s }}", colour),
+		Selected: fmt.Sprintf(`{{ "✔" | green | bold }} {{ .Name | %s | bold }}`, colour),
 		Details: `
 	{{ "Name:" | faint }} 	 {{ .Name }}
 	{{ "Description:" | faint }} 	 {{ .Description | truncate }}
@@ -53,11 +53,11 @@ func getTemplate() *promptui.SelectTemplates {
 
 }
 
-func getSelectionPrompt(repos []repoInfo) *promptui.Select {
+func getSelectionPrompt(repos []repoInfo, colour string) *promptui.Select {
 	return &promptui.Select{
 		Label:     "repository list",
 		Items:     repos,
-		Templates: getTemplate(),
+		Templates: getTemplate(colour),
 		Size:      20,
 		Searcher: func(input string, idx int) bool {
 			repo := repos[idx]
