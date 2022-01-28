@@ -13,8 +13,8 @@ var cfgFile string
 
 var rootCmd = &cobra.Command{
 	Use:   "gh-s",
-	Short: "short description",
-	Long:  "Long description",
+	Short: "gh-s: search repositories interactively",
+	Long:  "gh-s: interactive prompt to search and browse github repositories",
 	Args:  cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		lang, _ := cmd.Flags().GetString("lang")
@@ -52,6 +52,55 @@ func init() {
 
 func getRootHelp() string {
 	return `
-	test help for gh-s
+gh-s: search repositories interactively. The search returns results
+matching the indicated query ordered by number of repository stars.
+
+Synopsis:
+	gh s [search] [flags]
+
+Usage:
+	gh s
+
+	if no arguments or flags are given, show an interactive prompt
+	to search, browse and filter repositories. Selecting an entry
+	from the list opens the repository in the web browser.
+
+	Flags can be passed so that the search is narrowed down (see available
+	flags below). For example:
+
+	gh s -l lua -d quickfix
+
+	If you provide an argument before the flags the prompt is skipped and such
+	argument is used in the name field to search for repositories:
+
+	gh s ripgrep -l rust
+
+Prompt commands:
+
+	arrow keys  : move up and down the list
+	/           : toggle fuzzy search
+	enter (<CR>): open selected repository in the web browser
+
+Flags:
+  -l, --lang   search repositories with specific language
+  -d, --desc   match repository description
+  -u, --user   narrow the search down to a specific user's repositories
+  -c, --colour change prompt colour
+  -h, --help   show this help page
+
+Examples:
+
+	# search for name=ripgrep and language=rust
+	gh s ripgrep -l rust
+
+	# what is the most starred neovim plugin?
+	gh s neovim -d plugin
+
+	# restrict to one user only
+	gh s lsp -u neovim
+
+Help commands:
+  help        show this help page
+  version     print current version
 `
 }
