@@ -17,8 +17,9 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		lang, _ := cmd.Flags().GetString("lang")
 		desc, _ := cmd.Flags().GetString("desc")
+		user, _ := cmd.Flags().GetString("user")
 		colour, _ := cmd.Flags().GetString("colour")
-		parsedQuery := getInputPrompt(args, lang, desc)
+		parsedQuery := getInputPrompt(args, lang, desc, user)
 		repos := getRepos(parsedQuery)
 		PromptList := getSelectionPrompt(repos, colour)
 
@@ -38,6 +39,7 @@ func Execute() {
 func init() {
 	rootCmd.Flags().StringP("lang", "l", "", "specify repository language")
 	rootCmd.Flags().StringP("desc", "d", "", "search in repository description")
+	rootCmd.Flags().StringP("user", "u", "", "search repository by user")
 	rootCmd.Flags().StringP("colour", "c", "cyan", "colour of selection prompt")
 	rootCmd.SetHelpTemplate(getRootHelp())
 }
