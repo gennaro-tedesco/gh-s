@@ -23,7 +23,9 @@
   <a href="#Feedback">Feedback</a>
 </h3>
 
-Search GitHub repositories interactively from the command line. Select from prompt and open in the browser! What was the name of that repository? But I remember it is written in Go and contains "awesome" in the description...
+Search GitHub repositories interactively from the command line. Start the prompt, browse the results and open in the browser! What was the name of that repository? But I remember it is written in Go and contains "awesome" in the description...
+
+...well say no more:
 ```
 gh s -l go -d awesome
 ```
@@ -32,14 +34,14 @@ gh s -l go -d awesome
 ```
 gh extension install gennaro-tedesco/gh-s
 ```
-### Requirements
-- `gh` cli
 
 ## Usage
 Get started!
 ```
 gh s
 ```
+
+![demo](https://user-images.githubusercontent.com/15387611/151630538-07574523-662a-4e74-b117-4afec38794ad.gif)
 
 Without any argument (or with flags only) `gh s` starts a prompt to insert the search query; after the search a list of results is shown. Navigate the list to show details, stars counts, URL and more. If instead you want to do all in one line
 ```
