@@ -2,8 +2,10 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"os"
 
+	"github.com/cli/go-gh"
 	"github.com/spf13/cobra"
 )
 
@@ -28,7 +30,11 @@ var rootCmd = &cobra.Command{
 			fmt.Println(err)
 			os.Exit(1)
 		}
-		fmt.Println(repos[idx])
+		exArgs := []string{"repo", "view", "-w", repos[idx].URL}
+		_, _, err = gh.Exec(exArgs...)
+		if err != nil {
+			log.Fatal(err)
+		}
 	},
 }
 
