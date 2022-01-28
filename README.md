@@ -11,7 +11,7 @@
   <a href="https://golang.org/">
     <img alt="Go" src="https://img.shields.io/badge/go-%2300ADD8.svg?&style=flat&logo=go&logoColor=white"/>
   </a>
-  <a href="https://github.com/gennaro-tedesco/stargazer/releases">
+  <a href="https://github.com/gennaro-tedesco/gh-s/releases">
     <img alt="releases" src="https://img.shields.io/github/release/gennaro-tedesco/gh-s"/>
   </a>
 </h2>
