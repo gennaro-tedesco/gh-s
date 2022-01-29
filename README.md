@@ -23,7 +23,7 @@
   <a href="#Feedback">Feedback</a>
 </h3>
 
-Search GitHub repositories interactively from the command line. Start the prompt, browse the results and open in the browser! The name of that repository 🤔? Written in rust, a list of awesome projects...
+Search GitHub repositories interactively from the command line. Start the prompt, browse and open the results! The name of that repository 🤔? Written in rust, a list of awesome projects...
 
 ...well say no more:
 ```
