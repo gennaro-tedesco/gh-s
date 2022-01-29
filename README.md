@@ -27,7 +27,7 @@ Search GitHub repositories interactively from the command line. Start the prompt
 
 ...well say no more:
 ```
-gh s -l rust -d awesome
+gh s -l rust -d list
 ```
 
 <img alt="example_image" src="https://user-images.githubusercontent.com/15387611/151635859-4a8a2200-b000-4e03-888a-2dc8ddcef009.png">
@@ -36,6 +36,7 @@ gh s -l rust -d awesome
 ```
 gh extension install gennaro-tedesco/gh-s
 ```
+This being a `gh` extension, you of course need [gh cli](https://github.com/cli/cli) as prerequisite.
 
 ## Usage
 Get started!
