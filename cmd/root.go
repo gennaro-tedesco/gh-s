@@ -25,14 +25,14 @@ var rootCmd = &cobra.Command{
 			fmt.Println(VERSION)
 			os.Exit(1)
 		}
-		lang, _ := cmd.Flags().GetString("lang")
+		languageList, _ := cmd.Flags().GetStringSlice("lang")
 		desc, _ := cmd.Flags().GetString("desc")
 		user, _ := cmd.Flags().GetString("user")
 		topicList, _ := cmd.Flags().GetStringSlice("topic")
 		colour, _ := cmd.Flags().GetString("colour")
 
 		searchString := getSearchString(args)
-		parsedQuery := parseInput(searchString, lang, desc, user, topicList)
+		parsedQuery := parseInput(searchString, languageList, desc, user, topicList)
 		repos := getRepos(parsedQuery)
 		PromptList := getSelectionPrompt(repos, colour)
 
@@ -55,7 +55,8 @@ func Execute() {
 
 func init() {
 	var topics []string
-	rootCmd.Flags().StringP("lang", "l", "", "specify repository language")
+	var languages []string
+	rootCmd.Flags().StringSliceVarP(&languages, "lang", "l", []string{}, "specify repository language")
 	rootCmd.Flags().StringP("desc", "d", "", "search in repository description")
 	rootCmd.Flags().StringP("user", "u", "", "search repository by user")
 	rootCmd.Flags().StringSliceVarP(&topics, "topic", "t", []string{}, "search repository by topic")

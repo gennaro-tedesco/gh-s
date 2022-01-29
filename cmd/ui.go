@@ -31,10 +31,10 @@ func getSearchString(args []string) string {
 	return args[0]
 }
 
-func parseInput(search string, lang string, desc string, user string, topicList []string) url.Values {
+func parseInput(search string, languageList []string, desc string, user string, topicList []string) url.Values {
 	queryString := fmt.Sprintf("%s in:name", search)
-	if lang != "" {
-		queryString = queryString + fmt.Sprintf(" language:%s", lang)
+	for _, language := range languageList {
+		queryString = queryString + fmt.Sprintf(" language:%s", language)
 	}
 	if desc != "" {
 		queryString = queryString + fmt.Sprintf(" %s in:description", desc)
