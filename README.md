@@ -57,7 +57,7 @@ takes one of the following arguments or flags
 | -l, --lang   | narrow down the search to a specific language    | yes (OR)   | gh s prompt -l go -l lua
 | -d, --desc   | search for keyword in the repository description | no         | gh s neovim -d plugin
 | -u, --user   | restrict the search to a specific user           | no         | gh s lsp -u neovim
-| -t, --topic  | narrow down the search to specific topics        | yes (AND)  | gh s nvim -t plugin -l lua
+| -t, --topic  | narrow down the search to specific topics        | yes (AND)  | gh s lsp -t plugin -t neovim
 | -c, --colour | change colour of the prompt                      | no         | gh s nvim -c magenta
 | -h, --help   | show the help page                               | no         | gh s -h
 | -V, --version| print the current version                        | no         | gh s -V
