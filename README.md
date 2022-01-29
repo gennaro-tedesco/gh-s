@@ -72,7 +72,7 @@ The prompt accepts the following navigation commands:
 | `enter (<CR>)`| open selected repository in web browser
 
 ### Search by topic or language only
-`gh-s` allows to skip prompting for a repository name by passing the `-E` flag; this in turn implies that the query searches against all possible GitHub repositories, which may result in longer response times. Use with care, however it does allow for some interesting statistics or general curiosity: check the [Wiki]()!
+`gh-s` allows to skip prompting for a repository name by passing the `-E` flag; this in turn implies that the query searches against all possible GitHub repositories, which may result in longer response times. Notice furthermore that `-E` must always be accompanied by at least another non-empty flag. Use with care, however it does allow for some interesting statistics or general curiosity: check the [Wiki]()!
 
 ### Execute commands
 `gh-s` must be intended as a filter prompt returning the URL of the selection; as such, the best and most flexible way to execute commands with the results is to pipe it into and from `stdin/stdout`. Have a look at the [Wiki](https://github.com/gennaro-tedesco/gh-s/wiki/Execute-commands) for some common examples!
