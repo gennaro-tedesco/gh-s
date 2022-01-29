@@ -10,7 +10,7 @@ import (
 	"github.com/manifoldco/promptui"
 )
 
-func getInputPrompt(args []string, lang string, desc string, user string) url.Values {
+func getSearchString(args []string) string {
 	if len(args) == 0 {
 		prompt := promptui.Prompt{
 			Label: "Repository name",
@@ -26,12 +26,12 @@ func getInputPrompt(args []string, lang string, desc string, user string) url.Va
 		if err != nil {
 			log.Fatal(err)
 		}
-		return parseInput(result, lang, desc, user)
+		return result
 	}
-	return parseInput(args[0], lang, desc, user)
+	return args[0]
 }
 
-func parseInput(search string, lang string, desc string, user string) url.Values {
+func parseInput(search string, lang string, desc string, user string, topicList []string) url.Values {
 	queryString := fmt.Sprintf("%s in:name", search)
 	if lang != "" {
 		queryString = queryString + fmt.Sprintf(" language:%s", lang)
@@ -41,6 +41,9 @@ func parseInput(search string, lang string, desc string, user string) url.Values
 	}
 	if user != "" {
 		queryString = queryString + fmt.Sprintf(" user:%s", user)
+	}
+	for _, topic := range topicList {
+		queryString = queryString + fmt.Sprintf(" topic:%s", topic)
 	}
 	query := url.Values{}
 	query.Add("q", queryString)
