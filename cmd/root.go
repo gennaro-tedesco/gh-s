@@ -98,8 +98,13 @@ Prompt commands:
 
 Flags:
   -l, --lang    search repositories with specific language
+  				multiple languages can be specified:
+				-l go -l rust -l lua
   -d, --desc    match repository description
   -u, --user    narrow the search down to a specific user's repositories
+  -t, --topic   search for topics in repositories
+  				multiple topics can be specified:
+				-t go -t gh-extension
   -c, --colour  change prompt colour
   -V, --version print current version
   -h, --help    show this help page
@@ -114,6 +119,9 @@ Examples:
 
 	# restrict to one user only
 	gh s lsp -u neovim
+
+	# all neovim plugins in lua of nvim-*
+	gh s nvim -t plugin -l lua
 
 Help commands:
   help        show this help page

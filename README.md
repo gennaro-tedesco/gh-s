@@ -52,14 +52,15 @@ gh s [search] [flag]
 ```
 takes one of the following arguments or flags
 
-| flags        | description
-|:------------ |:-----------------------------------
-| -l, --lang   | narrow down the search to a specific language
-| -d, --desc   | search for keyword in the repository description
-| -u, --user   | restrict the search to a specific user
-| -c, --colour | change colour of the prompt
-| -h, --help   | show the help page
-| -V, --version| print the current version
+| flags        | description                                      | multiple   | example
+|:------------ |:------------------------------------------------ |:---------- |:--------
+| -l, --lang   | narrow down the search to a specific language    | yes ( OR ) | gh s prompt -l go -l Makefile
+| -d, --desc   | search for keyword in the repository description | no         | gh s neovim -d plugin
+| -u, --user   | restrict the search to a specific user           | no         | gh s lsp -u neovim
+| -t, --topic  | narrow down the search to specific topics        | yes ( AND )| gh s nvim -t plugin -l lua
+| -c, --colour | change colour of the prompt                      | no         | gh s nvim -c magenta
+| -h, --help   | show the help page                               | no         | gh s -h
+| -V, --version| print the current version                        | no         | gh s -V
 
 The prompt accepts the following navigation commands:
 
