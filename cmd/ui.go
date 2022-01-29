@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/url"
+	"os"
 	"strings"
 
 	"github.com/manifoldco/promptui"
@@ -13,7 +14,9 @@ import (
 func getSearchString(args []string) string {
 	if len(args) == 0 {
 		prompt := promptui.Prompt{
-			Label: "Repository name",
+			Stdout: os.Stderr,
+			Stdin:  os.Stdin,
+			Label:  "Repository name",
 			Validate: func(input string) error {
 				if len(input) == 0 {
 					return errors.New("no input provided")
@@ -84,6 +87,8 @@ func getTemplate(colour string) *promptui.SelectTemplates {
 
 func getSelectionPrompt(repos []repoInfo, colour string) *promptui.Select {
 	return &promptui.Select{
+		Stdout:    os.Stderr,
+		Stdin:     os.Stdin,
 		Label:     "repository list",
 		Items:     repos,
 		Templates: getTemplate(colour),
