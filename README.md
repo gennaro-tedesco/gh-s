@@ -54,6 +54,7 @@ takes one of the following arguments or flags
 
 | flags        | description                                      | multiple   | example
 |:------------ |:------------------------------------------------ |:---------- |:--------
+| -E, --empty  | do not prompt for name, search by flags only     | no         | gh s -E -l go -l rust
 | -l, --lang   | narrow down the search to a specific language    | yes (OR)   | gh s prompt -l go -l lua
 | -d, --desc   | search for keyword in the repository description | no         | gh s neovim -d plugin
 | -u, --user   | restrict the search to a specific user           | no         | gh s lsp -u neovim
@@ -70,6 +71,8 @@ The prompt accepts the following navigation commands:
 | `/`           | toggle search in results list
 | `enter (<CR>)`| open selected repository in web browser
 
+### Search by topic or language only
+`gh-s` allows to skip prompting for a repository name by passing the `-E` flag; this in turn implies that the query searches against all possible GitHub repositories, which may result in longer response times. Use with care, however it does allow for some interesting statistics or general curiosity: check the [Wiki]()!
 
 ### Execute commands
 `gh-s` must be intended as a filter prompt returning the URL of the selection; as such, the best and most flexible way to execute commands with the results is to pipe it into and from `stdin/stdout`. Have a look at the [Wiki](https://github.com/gennaro-tedesco/gh-s/wiki/Execute-commands) for some common examples!

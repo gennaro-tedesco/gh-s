@@ -29,7 +29,12 @@ var rootCmd = &cobra.Command{
 		topicList, _ := cmd.Flags().GetStringSlice("topic")
 		colour, _ := cmd.Flags().GetString("colour")
 
-		searchString := getSearchString(args)
+		searchString := func() string {
+			if empty, _ := (cmd.Flags().GetBool("empty")); empty {
+				return ""
+			}
+			return getSearchString(args)
+		}()
 		parsedQuery := parseInput(searchString, languageList, desc, user, topicList)
 		repos := getRepos(parsedQuery)
 		PromptList := getSelectionPrompt(repos, colour)
@@ -55,6 +60,7 @@ func init() {
 	rootCmd.Flags().StringP("user", "u", "", "search repository by user")
 	rootCmd.Flags().StringSliceVarP(&topics, "topic", "t", []string{}, "search repository by topic")
 	rootCmd.Flags().StringP("colour", "c", "cyan", "colour of selection prompt")
+	rootCmd.Flags().BoolP("empty", "E", false, "allow for empty name search")
 	rootCmd.Flags().BoolP("version", "V", false, "print current version")
 	rootCmd.SetHelpTemplate(getRootHelp())
 }
@@ -91,6 +97,8 @@ Prompt commands:
 	enter (<CR>): open selected repository in the web browser
 
 Flags:
+  -E, --empty   allow to pass an empty string as name, that is search
+  				github repositories based on topic and language only
   -l, --lang    search repositories with specific language
   				multiple languages can be specified:
 				-l go -l rust -l lua
@@ -116,6 +124,9 @@ Examples:
 
 	# all neovim plugins in lua of nvim-*
 	gh s nvim -t plugin -l lua
+
+	# the most famous go or rust frameworks
+	gh s -E -l go -l rust
 
 Help commands:
   help        show this help page
