@@ -14,6 +14,14 @@ type repoInfo struct {
 	Stars       float64
 }
 
+func checkNil(decoded interface{}, key string) string {
+	val, ok := decoded.(map[string]interface{})[key]
+	if ok && val != nil {
+		return val.(string)
+	}
+	return ""
+}
+
 func getRepos(query url.Values) []repoInfo {
 	client, err := gh.RESTClient(nil)
 	if err != nil {
