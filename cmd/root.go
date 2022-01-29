@@ -25,11 +25,14 @@ var rootCmd = &cobra.Command{
 			fmt.Println(VERSION)
 			os.Exit(1)
 		}
-		lang, _ := cmd.Flags().GetString("lang")
+		languageList, _ := cmd.Flags().GetStringSlice("lang")
 		desc, _ := cmd.Flags().GetString("desc")
 		user, _ := cmd.Flags().GetString("user")
+		topicList, _ := cmd.Flags().GetStringSlice("topic")
 		colour, _ := cmd.Flags().GetString("colour")
-		parsedQuery := getInputPrompt(args, lang, desc, user)
+
+		searchString := getSearchString(args)
+		parsedQuery := parseInput(searchString, languageList, desc, user, topicList)
 		repos := getRepos(parsedQuery)
 		PromptList := getSelectionPrompt(repos, colour)
 
@@ -51,9 +54,12 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().StringP("lang", "l", "", "specify repository language")
+	var topics []string
+	var languages []string
+	rootCmd.Flags().StringSliceVarP(&languages, "lang", "l", []string{}, "specify repository language")
 	rootCmd.Flags().StringP("desc", "d", "", "search in repository description")
 	rootCmd.Flags().StringP("user", "u", "", "search repository by user")
+	rootCmd.Flags().StringSliceVarP(&topics, "topic", "t", []string{}, "search repository by topic")
 	rootCmd.Flags().StringP("colour", "c", "cyan", "colour of selection prompt")
 	rootCmd.Flags().BoolP("version", "V", false, "print current version")
 	rootCmd.SetHelpTemplate(getRootHelp())
@@ -92,8 +98,13 @@ Prompt commands:
 
 Flags:
   -l, --lang    search repositories with specific language
+  				multiple languages can be specified:
+				-l go -l rust -l lua
   -d, --desc    match repository description
   -u, --user    narrow the search down to a specific user's repositories
+  -t, --topic   search for topics in repositories
+  				multiple topics can be specified:
+				-t go -t gh-extension
   -c, --colour  change prompt colour
   -V, --version print current version
   -h, --help    show this help page
@@ -108,6 +119,9 @@ Examples:
 
 	# restrict to one user only
 	gh s lsp -u neovim
+
+	# all neovim plugins in lua of nvim-*
+	gh s nvim -t plugin -l lua
 
 Help commands:
   help        show this help page
