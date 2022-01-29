@@ -10,7 +10,7 @@ import (
 var cfgFile string
 
 // VERSION number: change manually
-const VERSION = "0.0.1"
+const VERSION = "0.0.2"
 
 var rootCmd = &cobra.Command{
 	Use:   "gh-s",

@@ -72,7 +72,7 @@ The prompt accepts the following navigation commands:
 
 
 ### Execute commands
-`gh-s` must be intended as a filter prompt returning the URL of the selection; as such, the best and most flexible way to execute commands with the results is to pipe it into and from `stdin/stdout`. Have a look at the Wiki for some common examples!
+`gh-s` must be intended as a filter prompt returning the URL of the selection; as such, the best and most flexible way to execute commands with the results is to pipe it into and from `stdin/stdout`. Have a look at the [Wiki](https://github.com/gennaro-tedesco/gh-s/wiki/Execute-commands) for some common examples!
 
 ## Feedback
 If you find this application useful consider awarding it a ⭐, it is a great way to give feedback! Otherwise, any additional suggestions or merge request is warmly welcome!
