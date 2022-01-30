@@ -106,16 +106,16 @@ Prompt commands:
 
 Flags:
   -E, --empty   allow to pass an empty string as name, that is search
-  				github repositories based on topic and language only.
-				For this to work at least one other flag must be non-empty.
+                github repositories based on topic and language only.
+                For this to work at least one other flag must be non-empty.
   -l, --lang    search repositories with specific language
-  				multiple languages can be specified:
-				-l go -l rust -l lua
+                multiple languages can be specified:
+                -l go -l rust -l lua
   -d, --desc    match repository description
   -u, --user    narrow the search down to a specific user's repositories
   -t, --topic   search for topics in repositories
-  				multiple topics can be specified:
-				-t go -t gh-extension
+                multiple topics can be specified:
+                -t go -t gh-extension
   -c, --colour  change prompt colour
   -V, --version print current version
   -h, --help    show this help page
@@ -139,9 +139,5 @@ Examples:
 
 	# list all your repositories
 	gh s -E -u @me
-
-Help commands:
-  help        show this help page
-  version     print current version
 `
 }
