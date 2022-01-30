@@ -31,6 +31,10 @@ var rootCmd = &cobra.Command{
 
 		searchString := func() string {
 			if empty, _ := (cmd.Flags().GetBool("empty")); empty {
+				if isEmptyQuery(user, languageList, topicList) {
+					fmt.Println("-E flag is only allowed together with -u, -l or -t")
+					os.Exit(1)
+				}
 				return ""
 			}
 			return getSearchString(args)
@@ -63,6 +67,10 @@ func init() {
 	rootCmd.Flags().BoolP("empty", "E", false, "allow for empty name search")
 	rootCmd.Flags().BoolP("version", "V", false, "print current version")
 	rootCmd.SetHelpTemplate(getRootHelp())
+}
+
+func isEmptyQuery(user string, languageList []string, topicList []string) bool {
+	return (user == "") && (len(languageList) == 0) && (len(topicList) == 0)
 }
 
 func getRootHelp() string {
