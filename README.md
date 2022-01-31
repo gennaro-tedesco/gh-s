@@ -80,4 +80,6 @@ The prompt accepts the following navigation commands:
 ## Feedback
 If you find this application useful consider awarding it a ⭐, it is a great way to give feedback! Otherwise, any additional suggestions or merge request is warmly welcome!
 
-See also a companion extension to snap around your git workflow: [gh-f](https://github.com/gennaro-tedesco/gh-f).
+See also the complete family of extensions
+- [gh-i](https://github.com/gennaro-tedesco/gh-i) to search for github issues with interactive prompt
+- [gh-f](https://github.com/gennaro-tedesco/gh-f) to snap around your git worfklow with `fzf`
