@@ -31,6 +31,7 @@ func getRepos(query url.Values) []repoInfo {
 	var apiResults map[string]interface{}
 	err = client.Get("search/repositories?"+query.Encode(), &apiResults)
 	if err != nil {
+		log.Println("\033[31m ✘\033[0m Perhaps you mispelt some flags?")
 		log.Fatal(err)
 	}
 

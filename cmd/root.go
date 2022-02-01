@@ -41,6 +41,10 @@ var rootCmd = &cobra.Command{
 		}()
 		parsedQuery := parseInput(searchString, languageList, desc, user, topicList)
 		repos := getRepos(parsedQuery)
+		if len(repos) == 0 {
+			fmt.Println("\033[31m ✘\033[0m No results found")
+			os.Exit(1)
+		}
 		PromptList := getSelectionPrompt(repos, colour)
 
 		idx, _, err := PromptList.Run()
