@@ -10,7 +10,7 @@ import (
 var cfgFile string
 
 // VERSION number: change manually
-const VERSION = "0.0.5"
+const VERSION = "0.0.6"
 
 var rootCmd = &cobra.Command{
 	Use:   "gh-s",
@@ -106,7 +106,7 @@ Prompt commands:
 
 	arrow keys  : move up and down the list
 	/           : toggle fuzzy search
-	enter (<CR>): open selected repository in the web browser
+	enter (<CR>): return selected repository to stdout
 
 Flags:
   -E, --empty   allow to pass an empty string as name, that is search

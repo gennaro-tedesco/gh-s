@@ -8,6 +8,7 @@ builds:
       - darwin
       - linux
       - windows
+      - netbsd
 archives:
   - name_template: "{{ .Os }}-{{ .Arch }}"
     format: binary
