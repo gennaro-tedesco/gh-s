@@ -20,7 +20,7 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		version, _ := cmd.Flags().GetBool("version")
 		if version {
-			fmt.Println(VERSION)
+			fmt.Println("gh-s", VERSION)
 			os.Exit(1)
 		}
 		languageList, _ := cmd.Flags().GetStringSlice("lang")
@@ -32,7 +32,7 @@ var rootCmd = &cobra.Command{
 		searchString := func() string {
 			if empty, _ := (cmd.Flags().GetBool("empty")); empty {
 				if isEmptyQuery(user, languageList, topicList) {
-					fmt.Println("-E flag is only allowed together with -u, -l or -t")
+					fmt.Println("\033[31m ✘\033[0m -E flag is only allowed together with -u, -l or -t")
 					os.Exit(1)
 				}
 				return ""
