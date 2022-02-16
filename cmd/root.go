@@ -90,7 +90,12 @@ Usage:
 
 	if no arguments or flags are given, show an interactive prompt
 	to search, browse and filter repositories. Selecting an entry
-	from the list opens the repository in the web browser.
+	from the list returns its address to stdout, so that it can be
+	piped into execution commands: generally you want to do
+
+	gh s [search] [flags] | xargs -n1 ...
+
+	check the wiki for examples: https://github.com/gennaro-tedesco/gh-s/wiki/Execute-commands
 
 	Flags can be passed so that the search is narrowed down (see available
 	flags below). For example:
