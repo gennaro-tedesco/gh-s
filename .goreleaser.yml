@@ -5,6 +5,7 @@ builds:
   - env:
       - CGO_ENABLED=0
     goos:
+      - android
       - darwin
       - linux
       - windows
