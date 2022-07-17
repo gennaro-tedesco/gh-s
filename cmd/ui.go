@@ -85,14 +85,14 @@ func getTemplate(colour string) *promptui.SelectTemplates {
 
 }
 
-func getSelectionPrompt(repos []repoInfo, colour string) *promptui.Select {
+func getSelectionPrompt(repos []repoInfo, colour string, limit int) *promptui.Select {
 	return &promptui.Select{
 		Stdout:    os.Stderr,
 		Stdin:     os.Stdin,
 		Label:     "repository list",
 		Items:     repos,
 		Templates: getTemplate(colour),
-		Size:      20,
+		Size:      limit,
 		Searcher: func(input string, idx int) bool {
 			repo := repos[idx]
 			title := strings.ToLower(repo.Name)
