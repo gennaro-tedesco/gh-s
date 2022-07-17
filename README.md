@@ -52,24 +52,25 @@ gh s [search] [flag]
 ```
 takes one of the following arguments or flags
 
-| flags        | description                                      | multiple   | example
-|:------------ |:------------------------------------------------ |:---------- |:--------
-| -E, --empty  | do not prompt for name, search by flags only     | no         | gh s -E -l go -l rust
-| -l, --lang   | narrow down the search to a specific language    | yes (OR)   | gh s prompt -l go -l lua
-| -d, --desc   | search for keyword in the repository description | no         | gh s neovim -d plugin
-| -u, --user   | restrict the search to a specific user           | no         | gh s lsp -u neovim
-| -t, --topic  | narrow down the search to specific topics        | yes (AND)  | gh s lsp -t plugin -t neovim
-| -c, --colour | change colour of the prompt                      | no         | gh s nvim -c magenta
-| -h, --help   | show the help page                               | no         | gh s -h
-| -V, --version| print the current version                        | no         | gh s -V
+| flags         | description                                      | multiple  | example                      |
+| :------------ | :----------------------------------------------- | :-------- | :--------------------------- |
+| -E, --empty   | do not prompt for name, search by flags only     | no        | gh s -E -l go -l rust        |
+| -l, --lang    | narrow down the search to a specific language    | yes (OR)  | gh s prompt -l go -l lua     |
+| -d, --desc    | search for keyword in the repository description | no        | gh s neovim -d plugin        |
+| -u, --user    | restrict the search to a specific user           | no        | gh s lsp -u neovim           |
+| -t, --topic   | narrow down the search to specific topics        | yes (AND) | gh s lsp -t plugin -t neovim |
+| -c, --colour  | change colour of the prompt                      | no        | gh s nvim -c magenta         |
+| -L, --limit   | limit the number of results (default 20)         | no        | gh s nvim -L 3               |
+| -h, --help    | show the help page                               | no        | gh s -h                      |
+| -V, --version | print the current version                        | no        | gh s -V                      |
 
 The prompt accepts the following navigation commands:
 
-| key           | description
-|:------------- |:-----------------------------------
-| arrow keys    | browse results list
-| `/`           | toggle search in results list
-| `enter (<CR>)`| print selected repository URL to `stdout`
+| key            | description                               |
+| :------------- | :---------------------------------------- |
+| arrow keys     | browse results list                       |
+| `/`            | toggle search in results list             |
+| `enter (<CR>)` | print selected repository URL to `stdout` |
 
 ### Search by topic or language only
 `gh-s` allows to skip prompting for a repository name by passing the `-E` flag; this in turn implies that the query searches against all possible GitHub repositories, which may result in longer response times. Notice furthermore that `-E` must always be accompanied by at least another non-empty flag. Use with care, however it does allow for some interesting statistics or general curiosity: check the [Wiki](https://github.com/gennaro-tedesco/gh-s/wiki/Common-queries)!

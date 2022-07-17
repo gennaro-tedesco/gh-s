@@ -28,6 +28,7 @@ var rootCmd = &cobra.Command{
 		user, _ := cmd.Flags().GetString("user")
 		topicList, _ := cmd.Flags().GetStringSlice("topic")
 		colour, _ := cmd.Flags().GetString("colour")
+		limit, _ := cmd.Flags().GetInt("limit")
 
 		searchString := func() string {
 			if empty, _ := (cmd.Flags().GetBool("empty")); empty {
@@ -45,7 +46,7 @@ var rootCmd = &cobra.Command{
 			fmt.Println("\033[31m ✘\033[0m No results found")
 			os.Exit(1)
 		}
-		PromptList := getSelectionPrompt(repos, colour)
+		PromptList := getSelectionPrompt(repos, colour, limit)
 
 		idx, _, err := PromptList.Run()
 		if err != nil {
@@ -68,6 +69,7 @@ func init() {
 	rootCmd.Flags().StringP("user", "u", "", "search repository by user")
 	rootCmd.Flags().StringSliceVarP(&topics, "topic", "t", []string{}, "search repository by topic")
 	rootCmd.Flags().StringP("colour", "c", "cyan", "colour of selection prompt")
+	rootCmd.Flags().IntP("limit", "L", 20, "limit the number of results")
 	rootCmd.Flags().BoolP("empty", "E", false, "allow for empty name search")
 	rootCmd.Flags().BoolP("version", "V", false, "print current version")
 	rootCmd.SetHelpTemplate(getRootHelp())
@@ -126,6 +128,7 @@ Flags:
                 multiple topics can be specified:
                 -t go -t gh-extension
   -c, --colour  change prompt colour
+  -L, --limit   Limit results
   -V, --version print current version
   -h, --help    show this help page
 
