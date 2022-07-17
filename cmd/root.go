@@ -69,7 +69,7 @@ func init() {
 	rootCmd.Flags().StringP("user", "u", "", "search repository by user")
 	rootCmd.Flags().StringSliceVarP(&topics, "topic", "t", []string{}, "search repository by topic")
 	rootCmd.Flags().StringP("colour", "c", "cyan", "colour of selection prompt")
-	rootCmd.Flags().IntP("limit", "L", 20, "limit the number of results")
+	rootCmd.Flags().IntP("limit", "L", 20, "limit the number of results (default 20)")
 	rootCmd.Flags().BoolP("empty", "E", false, "allow for empty name search")
 	rootCmd.Flags().BoolP("version", "V", false, "print current version")
 	rootCmd.SetHelpTemplate(getRootHelp())
@@ -128,7 +128,7 @@ Flags:
                 multiple topics can be specified:
                 -t go -t gh-extension
   -c, --colour  change prompt colour
-  -L, --limit   Limit results
+  -L, --limit   limit the number of results (default 20)
   -V, --version print current version
   -h, --help    show this help page
 
