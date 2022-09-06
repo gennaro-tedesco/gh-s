@@ -46,6 +46,8 @@ gh s
 
 ![demo](https://user-images.githubusercontent.com/15387611/151630538-07574523-662a-4e74-b117-4afec38794ad.gif)
 
+...or do you prefer a [full YouTube video](https://www.youtube.com/watch?v=JbG_mLsbw24) on the topic?
+
 Without any argument (or with flags only) `gh s` starts a prompt to insert the search query; after the search a list of results is shown. Navigate the list to show details, stars counts, URL and more. If instead you want to do all in one line
 ```
 gh s [search] [flag]
