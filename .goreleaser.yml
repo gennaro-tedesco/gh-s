@@ -29,18 +29,8 @@ builds:
         goarch: "386"
 
 archives:
-  - id: default
-    ids:
-      - default
-    formats:
-      - tar.gz
-    format_overrides:
-      - goos: windows
-        formats:
-          - zip
-    name_template: >-
-      {{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}
-      {{- if .Arm }}v{{ .Arm }}{{ end }}
+  - name_template: "{{ .Os }}-{{ .Arch }}"
+    formats: binary
 
 checksum:
   name_template: "checksums.txt"
