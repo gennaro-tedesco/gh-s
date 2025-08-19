@@ -9,6 +9,7 @@ builds:
       - linux
       - windows
       - netbsd
+      - android
 archives:
   - name_template: "{{ .Os }}-{{ .Arch }}"
     format: binary
