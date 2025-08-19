@@ -1,19 +1,52 @@
+version: 2
+
 before:
   hooks:
     - go mod tidy
+
 builds:
-  - env:
+  - id: default
+    env:
       - CGO_ENABLED=0
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w
     goos:
-      - darwin
       - linux
+      - darwin
       - windows
-      - netbsd
       - android
+      - netbsd
+    goarch:
+      - amd64
+      - arm64
+    ignore:
+      - goos: android
+        goarch: amd64
+
 archives:
-  - name_template: "{{ .Os }}-{{ .Arch }}"
-    format: binary
+  - id: default
+    ids:
+      - default
+    formats:
+      - tar.gz
+    format_overrides:
+      - goos: windows
+        formats:
+          - zip
+    name_template: >-
+      {{ .ProjectName }}_{{ .Version }}_{{ .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "arm64" }}aarch64
+      {{- else }}{{ .Arch }}{{ end }}
+
+checksum:
+  name_template: "checksums.txt"
+
 snapshot:
-  name_template: "{{ .Tag }}-next"
+  version_template: "{{ .Tag }}-next"
+
 changelog:
   use: github-native
+
