@@ -16,17 +16,25 @@ builds:
       - linux
       - darwin
       - windows
-      - android
       - netbsd
     goarch:
       - amd64
       - arm64
       - "386"
-    ignore:
-      - goos: android
-        goarch: amd64
-      - goos: android
-        goarch: "386"
+
+  - id: android
+    binary: gh-s
+    env:
+      - CGO_ENABLED=0
+      - GODEBUG=netdns=go
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w
+    goos:
+      - android
+    goarch:
+      - arm64
 
 archives:
   - name_template: "{{ .Os }}-{{ .Arch }}"
